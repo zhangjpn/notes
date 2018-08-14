@@ -22,24 +22,24 @@ postgres=# SELECT * FROM pg_database;
 ## psql控制台命令
 
 ```text
-\i db.sql  			导入sql文件
-\password 			设置当前登录用户的密码
-\h						查看SQL命令的解释，比如\h select
-\?						查看psql命令列表
-\l						列出所有数据库
+\i db.sql  	    导入sql文件
+\password 		设置当前登录用户的密码
+\h				查看SQL命令的解释，比如\h select
+\?				查看psql命令列表
+\l				列出所有数据库
 \c [db_name] 	连接其他数据库
-\d						列出当前数据库的所有表格。
-\d [table_name] 	列出某一张表格的结构
-\du					列出所有用户
-\e  					打开文本编辑器
-\conninfo			列出当前数据库和连接的信息
-\password [user]	修改用户密码
-\q						退出
-\du  					查看角色
-\l   					查看数据库
-\q  					退出
-\df  					查看操作函数
-\do  					查看操作符
+\d				列出当前数据库的所有表格。
+\d [table_name] 列出某一张表格的结构
+\du				列出所有用户
+\e  			打开文本编辑器
+\conninfo		列出当前数据库和连接的信息
+\password [user]修改用户密码
+\q				退出
+\du  			查看角色
+\l   			查看数据库
+\q  			退出
+\df  			查看操作函数
+\do  			查看操作符
 
 ```
 
@@ -77,7 +77,7 @@ $ psql --version
 1. 认证失败  
     操作： 命令行下输入 `$ psql -U username -d mydb`，无法认证。  
     提示： psql: FATAL:  Peer authentication failed for user 'username'   
-    原因： [参考][1] ，在命令行输入时默认的认证方式是 PEER connection，要使用密码认证，需要输入 `-h` 参数，例如 `$ psql -U username -h localhost -d mydb`  
+    原因： [参考][1] ，在命令行输入时默认的认证方式是 PEER connection，要使用密码认证，需要输入 `-h` 参数，例如 `$ psql -U username -h localhost -d mydb`  
 
 
 ### 参考
