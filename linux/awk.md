@@ -69,9 +69,12 @@ awk -F "[:\t]" '{a[$1]+=$3}END{for(i in a){printf("%s\t%d\n",i,a[i])}}' min0819.
 awk -F "+" '/^2018-08-19/{print $1}' 20180819.log | awk -F "[ :]" '{printf("%s:%s\n", $2, $3)}' |awk '{a[$0]+=1}END{for(i in a){printf("%s\t%d\n", i, a[i])}}' | sort > min0819.txt
 
 awk -F "[:\t]" '{a[$1]+=$3}END{for(i in a){printf("%s\t%d\n",i,a[i])}}' min0819.txt| sort > hour0819.txt
+
+cat half.log|grep app | awk -F "app" '{print $2}'| awk -F "\"" '{a[$5]+=1}END{for(i in a){printf("%s\t%d\n",i,a[i])}}' |sort -rk 2
+
 ```
 
-
+[其它参考示例](3)
 
 ## 内置变量
 
@@ -87,3 +90,4 @@ RS 换行符
 
 [1]: http://www.runoob.com/linux/linux-comm-awk.html "快速入门"
 [2]: http://www.gnu.org/software/gawk/manual/gawk.html "详细的官方文档"
+[3]: https://coolshell.cn/articles/9070.html  "示例"
