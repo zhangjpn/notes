@@ -29,3 +29,92 @@ db.getCollection('customers').aggregate([
 ])
 
 ```
+
+
+
+### 多表混合排序
+
+var orders = Order.aggregate([
+    {
+            $match: {_id: storeId},
+        },
+        {
+            $lookup: {
+                from: "maintenances",
+                let: {
+                    storeId: storeId,
+                },
+                pipeline: [
+                    {
+                        $match: {
+                            $expr: {
+                                $eq: ['$storeId', '$$storeId'],
+                            }
+                        }
+                    }
+                
+                ],
+                as:'maintenances'
+            }
+        },
+        {
+            $lookup: {
+                from: "cares",
+                let: {
+                    storeId: storeId
+                },
+                pipeline: [
+                    {
+                        $match: {
+                            $expr: {
+                                $eq: ['$storeId', '$$storeId']
+                            }
+                        }
+                    }
+                
+                ],
+                as: 'cares'
+            }
+        },
+        {
+            $lookup: {
+                from: "sales",
+                let: {
+                    storeId: storeId
+                },
+                pipeline: [
+                    {
+                        $match: {
+                            $expr: {
+                                $eq: ['$storeId', '$$storeId']
+                            }
+                        }
+                    }
+                
+                ],
+                as: 'sales'
+            }
+        },
+        {
+            $addFields: {
+                "maintenances.orderType": '1',
+                "sales.orderType": '2',
+                "cares.orderType": '3',
+            }
+        },
+        {
+            $project: {
+                _id: 0,
+                items: {
+                    $concatArrays: ['$maintenances', '$cares', '$sales']
+                }
+            }
+        },
+        {$unwind: '$items'},
+        {
+            $replaceRoot: {
+                newRoot: '$items'
+            }
+        },
+    ]
+])
