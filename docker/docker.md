@@ -59,7 +59,25 @@ docker container ls [-all]
 // 查看进程日志
 docker container logs [containerID]
 
-// 
+// dockerhub登录
+docker login
+
+dockerhub上的仓库跟github的仓库类似，一个repository就是一个项目，不同点是dockerhub没有branch和commit，一个仓库的不同镜像通过tag来区分
+
+// 推拉docker hub镜像
+
+例如拉取zhangjpn下的my仓库中的某个镜像，该镜像的tag是1.0
+docker pull zhangjpn/my:1.0
+
+docker tag 的使用
+作用： 标记本地镜像，将其归入某一仓库。
+docker tag [OPTIONS] IMAGE[:TAG] [REGISTRYHOST/][USERNAME/]NAME[:TAG]
+例如：将本地的镜像tag与远程的关联
+docker tag localname:1.0 zhangjpn/my:1.0
+
+// 将本地镜像推到远程
+docker push zhangjpn/my:1.0
+
 
 ```
 
@@ -95,3 +113,23 @@ NODE_ENV=production
 NODE_PORT=8808
 ```
 环境变量文件适合需要设置环境变量比较多的时候使用。
+
+## Dockerfile写法
+
+
+## 常见问题
+
+### 零碎
+
+#### Linux下用户执行docker命令免sudo
+将用户添加到docker用户组
+```shell
+$ sudo usermod -a -G docker ${USER}
+```
+
+### 如何减小镜像体积
+- 将多个run命令写成一个run命令
+- 清除缓存
+- 分阶段构建
+- 使用alpine基础镜像
+- 使用distroless镜像
