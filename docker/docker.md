@@ -122,6 +122,7 @@ NODE_PORT=8808
 ### 零碎
 
 #### Linux下用户执行docker命令免sudo
+[参考](https://www.jianshu.com/p/4e74f11ee309)
 将用户添加到docker用户组
 ```shell
 $ sudo usermod -a -G docker ${USER}

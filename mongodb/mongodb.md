@@ -40,7 +40,7 @@ cfg = {
     _id: "rs1",
     members: [{
         _id: 0,
-        host: 'localhost:27017',
+        host: 'localhost:27018',
         priority: 1
     }]
 };
