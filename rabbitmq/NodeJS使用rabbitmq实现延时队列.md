@@ -1,7 +1,7 @@
 # NodeJS基于RabbitMQ实现延时队列
 
 ## 原理
-RabbitMQ本身没有直接支持延迟队列功能，但是可以通过ttl过期时间和dlx死信邮箱模拟出延时队列的功能。
+RabbitMQ本身没有直接支持延迟队列功能，但是可以通过ttl过期时间和dlx死信邮箱模拟出延时队列的功能。[参考](1)
 
 ### Message TTL 过期时间
 队列中的消息可以指定过期时间，当消息过期仍未被消费则会被丢弃。需设置`x-message-ttl`参数。
@@ -75,3 +75,7 @@ open.then(function (conn) {
     })
 }).catch(console.error)
 ```
+
+
+
+[1]: (https://www.cloudamqp.com/docs/delayed-messages.html)
