@@ -79,6 +79,9 @@ $ mongo --username yourname --password yourpwd --port 27017
 # 如果是关闭集群
 > db.shutdownServer({force: true})
 
+# 启用鉴权时关闭服务需要对应用户用有clusterAdmin角色的权限
+db.updateUser("username",{roles:[{"role" : "userAdminAnyDatabase","db" : "admin"},{"role" : "dbOwner","db" : "admin"},{"role" : "clusterAdmin", "db": "admin"}]})
+
 ```
 
 ## 权限管理
