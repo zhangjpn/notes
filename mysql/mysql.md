@@ -229,3 +229,8 @@ create table `demo`(
 
 - [官方文档5.7](https://dev.mysql.com/doc/refman/5.7/en/date-and-time-types.html)  
 - [如何设置timestamp不自动更新且能设置默认值](https://blog.csdn.net/HD243608836/article/details/114645259)  
+
+
+
+### MySQL分片
+TODO: 
