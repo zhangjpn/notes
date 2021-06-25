@@ -93,6 +93,23 @@ pytest -v -m -k
 --durations=10  --durations-min=1.0  # 显示最小时间大于1s的10个测试
 
 ```
+### 读取环境变量
+有些配置不方便硬编码到代码中，将配置信息通过环境变量的形式来传入测试中是一个实现方式。
+```sh
+# 该插件是使用pytest.addini()方法向pytest中添加配置来实现的
+pip install pytest-dotenv
+```
+
+```ini
+# pytest.ini
+[pytest]
+env_override_existing_values = 1  # 是否覆盖已存在的值
+# 指定执行测试之前读入的配置文件，如果当前目录不存在，则会向上层目录获取
+env_files =
+    .env
+    .test.env
+    .deploy.env
+```
 
 
 ### flask下使用pytest
