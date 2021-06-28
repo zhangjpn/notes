@@ -28,7 +28,7 @@ repo/
         controller.py
     tests/
         __init__.py
-        conftest.py  # 配置文件
+        conftest.py  # 配置文件 可用于编写插件
         test_orm.py
     pytest.ini
 # pytest 
@@ -49,33 +49,6 @@ repo/
 
 
 
-```sh
-
-
-
-# 测试单个方法
-# -m 用于筛选特定的名字？ mark
-pytest -v -m "select name" path/to/testfile.py::TestClass::test_func
-# 指定测试多个方法
-python -m pytest path/to/testfile.py::TestClass path/to/file.py:test_func
-# 查看内置的fixtures
-pytest --fixtures
-# 运行包内测试
-pytest --pyargs pkg.testing
-```
-参数：
-```sh
-pytest -v -m -k
--v # verbose
--k keyword expression  根据关键字筛选
--m marker expression # 配合 @pytest.mark.slow 使用
--p myplugin # 插件
--p no:doctest # 禁用插件
--q  # quiet
--vv # 详细打印
---durations=10  --durations-min=1.0  # 显示最小时间大于1s的10个测试
-
-```
 ```py
 
 @pytest.fixture
@@ -177,6 +150,11 @@ pytest -v -m -k
 --durations=10  --durations-min=1.0  # 显示最小时间大于1s的10个测试
 
 ```
+
+
+### 安装插件
+只要虚拟环境中安装有`pytest-NAME`的包，pytest就会自动调用，不需显式import。
+
 ### 读取环境变量
 有些配置不方便硬编码到代码中，将配置信息通过环境变量的形式来传入测试中是一个实现方式。
 ```sh
@@ -190,7 +168,7 @@ pip install pytest-dotenv
 env_override_existing_values = 1  # 是否覆盖已存在的值
 # 指定执行测试之前读入的配置文件，如果当前目录不存在，则会向上层目录获取
 env_files =
-    .env
+    .env # 环境变量
     .test.env
     .deploy.env
 ```
