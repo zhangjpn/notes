@@ -2,7 +2,7 @@
 
 ## 概述
 
-
+`flask-restplus`作者失联，维护人员已经fork出`flask-restx`，后者完全兼容前者，建议用后者进行开发。
 
 ## 使用
 
@@ -46,3 +46,35 @@ responses = {
 
 ```
 
+### 错误处理
+
+- flask-restplus的errorhandler会拦截掉flask的所有errorhandler，所以用这个包定义的接口的报错需要使用@api.errorhandler(Error)进行处理。
+- 如果没有定义errorhandler，则会调用其内部默认的处理函数，但是不会抛出给flask。
+- flask-restplus的errorhandler是针对特定的错误类，而不包含其子类。例如处理Exception的handler只能处理Exception，而不会处理Exception派生的错误
+
+最佳实践：
+
+```py
+
+import werkzeug
+from flask import Flask
+from flask_restplus import Api
+
+app = Flask(__name__)
+api = Api(app)
+
+@app.errorhandler(500)
+def handle_500(e):
+    return 
+    
+@app.errorhandler(Exception)
+def handle_unknown_error(e):
+    pass
+
+@api.errorhandler(werkzeug.exceptions.InternalServerError)
+def handle_internal_error(e):
+    pass
+@api.errorhandler(werkzeug.exceptions.NotFound)
+def handle_page_not_found_error(e):
+    pass
+```

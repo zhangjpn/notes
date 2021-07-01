@@ -1,14 +1,16 @@
+# VIM notes
+
 ## 解决远程使用vim粘贴时出现行首多次缩进的问题
-http://www.cnblogs.com/end/archive/2012/06/01/2531142.html
+
+[参考](http://www.cnblogs.com/end/archive/2012/06/01/2531142.html)
 
 粘贴前
     :set paste
 粘贴后
     :set nopaste
 
-
-
 ```sh
+
 # vim查找
 :vimgrep
 :vim[!] /pattern/[g][j] file1 file2...
@@ -22,6 +24,5 @@ j - 是否自动跳转到第一处，有j就不跳，只更新quickfix列表
 位置列表：每个窗口一个，可以有多个，相应quickfix列表前面加l，入:lmake,:lgrep等
 
 ```
-
 
 ![quickfix快捷命令](./assets/quickfix_cmd.png)

@@ -3,6 +3,7 @@
 ## 基本框架
 
 四种对象：
+
 - schedulers 调度器，决定调度逻辑
   - BlockingScheduler
   - BackgroundScheduler
@@ -29,7 +30,6 @@
   - cron
   - date
   - interval
-
 
 ## 基础使用
 
@@ -89,12 +89,24 @@ executors = {
     # 'twisted': TwistedExecutor(10),
     # 'asyncio': AsyncIOExecutor(10),
 }
+
 # 定义job的默认设置
 job_defaults = {
     'coalesce': False,  # 默认True，表示当任务堆积的时候只执行一次
     'max_instances': 3  # 一个job最大可并发执行数量
 }
-scheduler = BackgroundScheduler(jobstores=jobstores, executors=executors, job_defaults=job_defaults)
+
+import logging
+
+logging.basicConfig()
+logger = logging.getLogger(__name__)
+
+scheduler = BackgroundScheduler(
+  logger=logger,  # 提供logger，可以打印scheduler内部对错误任务的判断信息，由于scheduler的jobstore用BaseException捕捉的，所以错误不会抛出，此时可以通过这个logger获得日志信息
+  jobstores=jobstores, 
+  executors=executors, 
+  job_defaults=job_defaults
+  )
 
 
 def my_job():
@@ -136,10 +148,12 @@ if __name__ == '__main__':
     scheduler.shutdown()
 
 ```
+
 trigger **trigger_args 相关参数
 
 - CronTrigger
-```
+
+```txt
 year=None  # 年，'*'
 month=None  # 月，'*'
 day=None  # 一个月的第几天
@@ -158,20 +172,22 @@ jitter=None  # （单位：秒）表示提前或延迟最多不超过该值的�
 例如， day=1, minute=20等价于year='*', month='*', day=1, week='*', day_of_week='*', hour='*', minute=20, second=0. 任务将在 每年每月第一天每个小时的第20分钟执行。
 参数的更多写法见[文档](https://apscheduler.readthedocs.io/en/stable/modules/triggers/cron.html#expression-types)。
 
-
 CronTrigger支持标准的crontab格式：
+
 ```py
 sched.add_job(job_function, CronTrigger.from_crontab('0 0 1-15 may-aug *'))
 ```
 
 - DateTrigger
-```
+
+```txt
 run_date=None  # 执行时间，datetime/str
 timezone=None  # 时区 
 ```
 
 - IntervalTrigger
-```
+
+```txt
 weeks=0  # 间隔周数
 days=0  # 间隔天数
 hours=0  # 间隔小时数
@@ -183,8 +199,8 @@ timezone=None  # 时区
 jitter=None  # 同CronTrigger
 ```
 
-
 ### 任务错过不执行情况分析
+
 1. 事件处理函数耗时过长导致定时任务堆积
    对于非阻塞的scheduler而言，虽然任务可以使用进程池等方式执行，但是事件处理函数是同步执行的，事件处理函数耗时过长会导致任务堆积。
 2. 最大实例数量限制
@@ -194,5 +210,6 @@ jitter=None  # 同CronTrigger
 4. 设置了任务允许时延且任务延迟超过限制。
 
 ## 参考
+
 [官方文档](https://apscheduler.readthedocs.io/en/stable/userguide.html)  
 [The Architecture of APScheduler](https://enqueuezero.com/concrete-architecture/apscheduler.html)
