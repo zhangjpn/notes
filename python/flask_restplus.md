@@ -77,4 +77,11 @@ def handle_internal_error(e):
 @api.errorhandler(werkzeug.exceptions.NotFound)
 def handle_page_not_found_error(e):
     pass
+
+# 定义默认的handler，将错误全部抛出给app
+@api.errorhander
+def default_handler(e):
+    raise e
+
+
 ```

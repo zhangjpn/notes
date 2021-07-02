@@ -71,6 +71,41 @@ When two things have to be changed together, we say that they are coupled.
 
 将触发方式分成两类：事件和命令，http请求是命令
 
+- Domain Events pattern
+- Message Bus pattern
+- Primitive Obsession（基本型别偏执）
+- 
+https://www.kancloud.cn/sstd521/refactor/194219
+
+events挂在model中，通过repository监控和获取
+
+* 服务层依赖于抽象
+
+NOTE:
+- Repository 隔离了底层数据与模型
+- unit of work 抽象了事务
+- event bus 解耦，实现职责分离（单一职责原则）
+- cqrs + event sourcing
+- 
+
+项目结构
+```txt
+一个微服务可以包含多个界限上下文，也可以只包含单个界限上下文，微服务是物理的边界，而不是概念边界。
+微服务底层的aggrgate才是界限上下文，在此基础上构建的需要实现多个aggregate一致性的事务就是分布式事务。
+/project/
+    services/
+        aggregate1/ 在这个底层内定义属于这个界限上下文的所有内容，然后在上层将其调用
+            event1
+            event2
+
+        aggregate2/
+            event3
+            event4
+
+
+
+```
+
 
 ### 13: Dependency Injection (and Bootstrapping)
 依赖注入的目的是为了解耦上层对底层的依赖，并且易于测试
