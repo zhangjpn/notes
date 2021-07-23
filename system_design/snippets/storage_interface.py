@@ -1,0 +1,4 @@
+
+
+class AbstractStorage(object):
+    pass

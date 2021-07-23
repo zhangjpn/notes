@@ -1,0 +1,4 @@
+
+
+class AbstractUnitOfWork(object):
+    pass

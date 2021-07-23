@@ -1,13 +1,11 @@
 # cosmic python
 
-
 ## 摘要
 
 one aggregate = one repository
 The rule that repositories should only return aggregates is the main place where we enforce the convention that aggregates are the only way into our domain model. Be wary of breaking it!
 
 Repository 应该只返回aggregate，也就是说，aggregate是接触领域模型的唯一方式
-
 
 ```py
 
@@ -53,19 +51,47 @@ class Service(object):
 
 ```
 
+## 笔记
 
-Part 2: Event-Driven Architecture
+### Part1: Building an Architecture to Support Domain Modeling
+
+#### chapter 06
+
+工作单元（unit of work）的引入是为了提供一个一致性的会话，在这个地方提供事务功能，这事务既可以是单个数据库事务，也可以实现分布式事务。这是将多个服务组合起来的最小单元，也是将多个repository通过共同的session组合起来的地方。
+repository则是提供提供聚合根的仓库。在书中，这个聚合根就是后面章节提到的Product。
+
+#### chapter 07
+
+The Aggregate pattern is a design pattern from the DDD community that helps us to resolve this tension. An aggregate is just a domain object that contains other domain objects and lets us treat the whole collection as a single unit.
+
+一个聚合加载的时候会将其内部所包含的所有东西都加载进来，构成一个对象，这会造成性能问题，怎么解决？
+    - 相对于多次即时查询，一次加载所需的所有东西在很多甚至大多数场景下性能更好
+    - lazy-loading
+
+aggregate的选择应该尽可能小，出于性能原因，也应该足够大，以囊括所有相关联的事物。
+
+aggregate不必对应某个实际存在的事物，而应该将其作为一堆基于某个目的而存在的事物的集合，一个聚合就是一个一致性边界。
+
+one aggregate = one repository
+
+通过版本号实现乐观并发控制：这实际上就是基于版本号的乐观锁，乐观锁需要处理冲突之后的重试。
+版本号的控制控制权问题：由于它本质上属于基础设施的东西，所以理论上应该放到数据库读写的repository中，但是放到这里可能会出现不必要的数据更新，所以最直接的方式是放在domain中。
+
+- boundary context
+- aggregate
+
+### Part 2: Event-Driven Architecture
+
 事件驱动架构
 
 The key in making great and growable systems is much more to design how its modules communicate rather than what their internal properties and behaviors should be.
 构建更大更可成长系统的关键是设计模块间如何通信而不是他们各自内部的属性和行为如何。
 
-
 常见的将单体划分为微服务的思路是将系统划分成若干名词的组合，而系统之间的通信是通过命令流来实现，也就是一个服务命令另一个服务执行某个动作。
 
 这种划分相当于每个数据表对应一个服务，这能应付简单的应用，但对复杂的系统很快会乱成一团。
 
-When two things have to be changed together, we say that they are coupled. 
+When two things have to be changed together, we say that they are coupled.
 
 解耦：用动词去思考拆分
 
@@ -73,22 +99,21 @@ When two things have to be changed together, we say that they are coupled.
 
 - Domain Events pattern
 - Message Bus pattern
-- Primitive Obsession（基本型别偏执）
-- 
-https://www.kancloud.cn/sstd521/refactor/194219
+- Primitive Obsession（[基本型别偏执](https://www.kancloud.cn/sstd521/refactor/194219)）
 
 events挂在model中，通过repository监控和获取
 
-* 服务层依赖于抽象
+服务层依赖于抽象
 
 NOTE:
+
 - Repository 隔离了底层数据与模型
 - unit of work 抽象了事务
 - event bus 解耦，实现职责分离（单一职责原则）
 - cqrs + event sourcing
-- 
 
 项目结构
+
 ```txt
 一个微服务可以包含多个界限上下文，也可以只包含单个界限上下文，微服务是物理的边界，而不是概念边界。
 微服务底层的aggrgate才是界限上下文，在此基础上构建的需要实现多个aggregate一致性的事务就是分布式事务。
@@ -102,21 +127,15 @@ NOTE:
             event3
             event4
 
-
-
 ```
 
-
 ### 13: Dependency Injection (and Bootstrapping)
+
 依赖注入的目的是为了解耦上层对底层的依赖，并且易于测试
 bootstrapping的目的是为了解决每次调用都要单独实例化所需依赖的问题，创建集中式的bootstrap脚本来实现对通用依赖的实例化。
 
 #### DIP/IOC/DI
+
 DIP, Dependence Inversion Principle，依赖倒置原则，即面向接口编程，上层功能不关心底层依赖的实现
 IOC, Inversion of Control 控制反转，关注的是上层不关注底层的创建，而应该是调用者先创建好（初始化），再传入调用函数中
 DI , Dependency Injection 依赖注入，是实现控制反转的手段，将实例化好的依赖传入到调用函数中
-
-
-
-
-
