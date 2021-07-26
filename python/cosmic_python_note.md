@@ -97,11 +97,13 @@ When two things have to be changed together, we say that they are coupled.
 
 将触发方式分成两类：事件和命令，http请求是命令
 
-- Domain Events pattern
-- Message Bus pattern
-- Primitive Obsession（[基本型别偏执](https://www.kancloud.cn/sstd521/refactor/194219)）
+- Domain Events pattern：一致性边界是aggregate/repository，event应该放到aggregate之外进行调度？
+  - events挂在model中，通过repository监控和获取
 
-events挂在model中，通过repository监控和获取
+- Message Bus pattern：
+- CQRS：提升性能
+
+- Primitive Obsession（[基本型别偏执](https://www.kancloud.cn/sstd521/refactor/194219)）
 
 服务层依赖于抽象
 
@@ -129,6 +131,12 @@ NOTE:
 
 ```
 
+### 09：Going down on the message bus
+
+将所有请求看作是事件，web服务的工作就是不断处理事件。由于处理事件是不会返回处理结果的，所以需要配合cqrs，将查询和命令进行分离，把请求当做命令。
+
+### 11：Event-Driven Architecture： Using Events to Integrate Microservices
+
 ### 13: Dependency Injection (and Bootstrapping)
 
 依赖注入的目的是为了解耦上层对底层的依赖，并且易于测试
@@ -139,3 +147,25 @@ bootstrapping的目的是为了解决每次调用都要单独实例化所需依�
 DIP, Dependence Inversion Principle，依赖倒置原则，即面向接口编程，上层功能不关心底层依赖的实现
 IOC, Inversion of Control 控制反转，关注的是上层不关注底层的创建，而应该是调用者先创建好（初始化），再传入调用函数中
 DI , Dependency Injection 依赖注入，是实现控制反转的手段，将实例化好的依赖传入到调用函数中
+
+## 其他
+
+### DDD blue book
+
+Part 1：如何构建合适的aggregate
+
+一个aggregate是一个最小的事务变动单位（可以粗略地理解），一致性边界要求其中的事务达到强一致性。
+An aggregate is an minimal invariant.
+An invariant is a business rule that must always be consistent.
+
+Part 2：如何处理多aggregate的最终一致性
+
+一个aggregate通过id引用另一个aggregate。
+
+通过Domain event将事件通过message bus（消息总线）传递到其他的aggregate中进行消费。
+
+对于消费事件时发生失败的情况可以进行重试，重试失败可以使用补偿或人工介入的方式解决。
+
+Part 3：
+
+估算加载一个aggregate需要多少成本（加载多少对象，有多高频的场景会需要用到）
