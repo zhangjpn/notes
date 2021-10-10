@@ -2,7 +2,6 @@
 
 ## 常用命令
 
-
 ```shell
 # 创建虚拟环境
 $ python -m venv venv
@@ -33,5 +32,47 @@ $ flask db upgrade
 
 ```
 
+### 多app合并
+
+```py3
+
+from werkzeug.wsgi import DispatcherMiddleware
+from werkzeug.serving import run_simple
+from flask import Flask
+# from threading import get_ident
+from flask import request
+from greenlet import getcurrent as get_ident
+
+frontend = Flask('frontend')
+backend = Flask('backend')
 
 
+@frontend.route('/home')
+def home():
+    i = get_ident()
+    print('frontend get_ident: %s' % i)
+    return 'frontend home'
+
+
+@frontend.route('/home1')
+def home1():
+    i = get_ident()
+    print('frontend1 get_ident: %s' % i)
+    return 'frontend home'
+
+
+@backend.route('/home')
+def home():
+    i = get_ident()
+    print('backend get_ident: %s' % i)
+    return 'backend home'
+
+
+app = DispatcherMiddleware(frontend, {
+    '/frontend': frontend,
+    '/backend': backend
+})
+
+if __name__ == "__main__":
+    run_simple('127.0.0.1', 5000, app)
+```
