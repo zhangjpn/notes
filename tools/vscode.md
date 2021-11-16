@@ -7,3 +7,5 @@
     "workbench.settings.editor": "json"  // vscode设置页的编辑形式：ui、json
 }
 ```
+
+## 调试控制台的使用
