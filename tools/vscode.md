@@ -9,3 +9,9 @@
 ```
 
 ## 调试控制台的使用
+
+## Python开发环境配置
+
+插件：
+
+- Python Extension Pack
