@@ -15,3 +15,16 @@
 插件：
 
 - Python Extension Pack
+
+## 快捷键
+
+- ctrl + p 文件夹内搜索文件名
+- ctrl + ` 终端与编辑器切换
+- ctrl + r 搜索最近打开的文件夹
+- ctrl + x 剪切当前行
+- ctrl + c 复制当前行
+- ctrl + shift + k 删除当前行
+- ctrl + k & ctrl + s 打开快捷键列表
+- F11 全屏
+- ctrl + h 替换
+- ctrl + f 查找
