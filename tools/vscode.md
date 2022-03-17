@@ -28,3 +28,5 @@
 - F11 全屏
 - ctrl + h 替换
 - ctrl + f 查找
+- ctrl + shift + f 聚焦资源管理器  与微软拼音快捷键冲突 <https://zhuanlan.zhihu.com/p/345884843>
+- ctrl + shift + e 聚焦搜索框
