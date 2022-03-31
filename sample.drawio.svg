@@ -1,0 +1,23 @@
+<svg host="65bd71144e" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="676px" height="423px" viewBox="-0.5 -0.5 676 423" content="&lt;mxfile&gt;&lt;diagram id=&quot;AQcuo2s4Bqm182DhkLW6&quot; name=&quot;第 1 页&quot;&gt;zVdNc5swEP01XDOAAONj4iTtpTOd8aHtUTEKaEYgRsgG8usrzAoQ+DvUzcns44lln94usoVWafVN4Dz5wSPCLNeOKgs9W67rLPxQ/TRIDYhtL1skFjQCrAfW9INoIqBbGpHCIErOmaS5CW54lpGNNDAsBC9N2jtnZtYcx2QCrDeYTdFfNJJJi4buose/ExonOrMTQH0p1mSopEhwxMsBhF4stBKcy/YqrVaENeppXdp1r0fudi8mSCYvWQBvXMha10YiVSqEGc/Uz1MiU6YiR1229IZzNCFABd+KDbCCrjLlCcJTIkWtKIIwLOnOfBSGvYk7Xrf0J6cqiWuDkULQEFzUxfoJEouYSFjUa/AoBK4HtLwhFMfTIHeUJxhJOuLr+x1/eZrvLEd8/wzfM/nINvjqoq1QRwPJe2hvg8OWAKvuMNvCztzPI6qP95sGG/xJ2wwkOVlxcL7iMqGSrHO8f9tSjTWzZFzk7Zx5pxWJOg12REhSnVZhWp/23eLwPtvlYOQAlAymzbgNblEk/JKK+OH/U8RBV3aBqknUv1VgP/g6/NOEOniujKiG6LbucfRncNA+jjvH2L12XI7HXzDzeNKVfsKbM1ixO4pAlV44taLjHvBiMIcX3fMSiISnb1uV5Onfi+GPxPBD/3596d/l6+R4c/TSpFkW3li5y84wt/SNNzHNWj1dTuVjTJ2jyRy+GH3BPP+yeY2u94UK+0Nzq07/3wO9/AU=&lt;/diagram&gt;&lt;/mxfile&gt;">
+    <defs/>
+    <g>
+        <path d="M 297 61.44 L 254.47 23.64 Q 247 17 238.06 21.47 L 195.94 42.53 Q 187 47 178.32 42.04 L 125.68 11.96 Q 117 7 109.93 14.07 L 74.07 49.93 Q 67 57 57.51 53.84 L 13.04 39.01" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 8.06 37.35 L 15.81 36.25 L 13.04 39.01 L 13.59 42.89 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 377 97 L 500.63 97" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 505.88 97 L 498.88 100.5 L 500.63 97 L 498.88 93.5 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <rect x="297" y="57" width="80" height="80" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <rect x="507" y="57" width="80" height="80" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <path d="M 193.67 297 L 188.1 347.06 Q 187 357 196.99 356.48 L 470.64 342.33" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 475.88 342.06 L 469.07 345.91 L 470.64 342.33 L 468.71 338.92 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <rect x="137" y="237" width="120" height="60" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <path d="M 477 342 L 517 382 L 477 422 L 437 382 Z" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <path d="M 552.61 235.81 L 662.23 332.78" fill="none" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="stroke"/>
+        <path d="M 666.16 336.26 L 658.6 334.24 L 662.23 332.78 L 663.24 329 Z" fill="rgb(0, 0, 0)" stroke="rgb(0, 0, 0)" stroke-miterlimit="10" pointer-events="all"/>
+        <ellipse cx="537" cy="222" rx="40" ry="15" fill="rgb(255, 255, 255)" stroke="rgb(0, 0, 0)" pointer-events="all"/>
+        <g fill="rgb(0, 0, 0)" font-family="Helvetica" text-anchor="middle" font-size="12px">
+            <text x="536.5" y="226.5">
+                Start
+            </text>
+        </g>
+    </g>
+</svg>

@@ -14,10 +14,22 @@
 
 插件：
 
-- Python Extension Pack
+- Python
+
+配置：
+
+代码检查器：pylint、pylama、flake8等
+代码风格：autopep8、yapf、black等
+
+ctrl + shift + p 打开命令搜索框
+
+- 输入 python: select linter 选择代码检查器
+- 输入 python: enable/disable linting  启用代码检查
+- 输入 python: select interpreter  选择默认解释器
 
 ## 快捷键
 
+- ctrl + shift + p 执行命令
 - ctrl + p 文件夹内搜索文件名
 - ctrl + ` 终端与编辑器切换
 - ctrl + r 搜索最近打开的文件夹
