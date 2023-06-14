@@ -35,6 +35,16 @@ ssh-copy-id user@ip
 cat ~/.ssh/id_rsa.pub |ssh user@ip "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
 ```
 
+远程登陆提示Permission denied(publickey)
+
+```sh
+sudo vi /etc/ssh/sshd_config
+
+# 设置PasswordAuthentication为yes
+# 重启sshd
+sudo systemctl restart sshd
+
+```
 
 
 
