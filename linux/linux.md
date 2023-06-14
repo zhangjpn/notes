@@ -1,6 +1,6 @@
 # Linux常用命令
 
-### 时间
+## 时间
 
 安装
 ```
@@ -12,14 +12,30 @@ sudo apt-get install ntpdate
 ntpdate cn.pool.ntp.org 
 ```
 
-# 免密码登录
+## 免密码登录
+
+
 ```shell
 $ ssh-keygen -t rsa
 $ cd .ssh
 $ touch authorized_keys
 $ chmod 600 authorized_keys
 ```
-将本地id_rsa.pub的文件内容放到authorized_keys中
+
+将本地`id_rsa.pub`的文件内容放到`authorized_keys`中
+
+方式1:
+```sh
+ssh-copy-id user@ip
+```
+
+方式2:针对ssh-copy-id用不了的情况
+
+```sh
+cat ~/.ssh/id_rsa.pub |ssh user@ip "mkdir -p ~/.ssh && cat >> ~/.ssh/authorized_keys"
+```
+
+
 
 
 # 根权限授权
