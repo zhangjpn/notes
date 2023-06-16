@@ -49,7 +49,7 @@ pip install xxx.whl
 
 ### pyproject.toml
 
-以flask配置文件为例：
+以flask配置文件为例[链接](https://github.com/pallets/flask/blob/main/pyproject.toml)：
 
 ```toml
 [project]
@@ -74,6 +74,8 @@ build-backend = "setuptools.build_meta"
 
 ```
 ### setup.py
+
+参考[requests的setup.py](https://github.com/psf/requests/blob/main/setup.py)
 
 ```py
 from setuptools import setup, find_packages
