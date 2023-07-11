@@ -26,3 +26,13 @@ j - 是否自动跳转到第一处，有j就不跳，只更新quickfix列表
 ```
 
 ![quickfix快捷命令](./assets/quickfix_cmd.png)
+
+
+## 缓冲区、窗口、tab、寄存器
+
+- 缓冲区（buffer）：打开的文件，:ls, :bn,
+- 标签（tab）：顶部标签栏, :tab all, :tabnew 
+- 窗口（window）：屏幕内切割了之后显示的文件
+- vim中这三者的理解：标签是容纳窗口的容器，每个窗口显示一个缓冲区
+- 寄存器（register）：可以理解为粘贴板, :reg, 双引号为命令标记
+- 搜索(vimgrep), vim /pattern/ **./**
