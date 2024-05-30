@@ -1,3 +1,4 @@
 .vscode
 venv/
 .obsidian
+.DS_Store
