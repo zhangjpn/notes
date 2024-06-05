@@ -32,7 +32,20 @@
    - 定义：管理项目所依赖的外部包的版本和安装，确保项目在不同环境下具有一致的依赖。
    - 工具：pip、pipenv、poetry。
 
-5. build 后端：
+5. build backend：
+   - build backend 是负责实际构建包的工具。它读取项目的元数据和构建指令，生成分发包（例如源代码分发包 .tar.gz 或二进制分发包 .whl）
+      - 读取构建配置：通常从 pyproject.toml 文件中 读取构建配置。
+      - 处理源文件：编译或转换源文件（如编译 C 扩展模块）。
+      - 生成分发包：创建适合发布的分发包文件。
+      - 常见的 Build Backend： Setuptools、Poetry、Flit
+6. build frontend：是与用户交互的工具，它调用 build backend 执行具体的构建操作。build frontend 提供了用户接口，负责协调和管理构建过程，确保构建环境正确配置，并调用 build backend 来生成分发包。
+   - 主要职责：
+     - 用户接口：提供命令行或图形界面，供用户触发构建操作。
+     - 环境管理：设置和管理构建所需的环境，处理依赖项安装。
+     - 调用 backend：根据用户命令调用适当的 build backend 进行实际的构建工作。
+     - 常见的 Build Frontend： pip、build、
+
+   - PEP 517：定义了构建系统的接口标准，使得前端工具和后端工具可以互操作。它规范了 build backend 和 build frontend 之间的接口。
 
 ## 分发包
 
