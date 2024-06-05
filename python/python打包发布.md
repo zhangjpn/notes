@@ -32,6 +32,8 @@
    - 定义：管理项目所依赖的外部包的版本和安装，确保项目在不同环境下具有一致的依赖。
    - 工具：pip、pipenv、poetry。
 
+5. build 后端：
+
 ## 分发包
 
 Python 分发包（Distribution Package）是指将 Python 项目打包后生成的文件，以便发布和安装。分发包可以包含代码、资源文件和元数据，并有两种主要类型：源代码分发包（Source Distribution）和二进制分发包（Binary Distribution）。
@@ -293,6 +295,8 @@ pip install xxx.whl
 
 ### pyproject.toml
 
+pyproject.toml 是 Python 项目配置文件的一种新格式，由 [PEP 518](https://peps.python.org/pep-0518/) 引入，用于定义构建系统的配置信息。它为项目的元数据和依赖管理提供了一种统一的配置方式，使构建工具（如 setuptools、poetry）能够更方便地读取和使用这些配置信息。
+
 以flask配置文件为例[链接](https://github.com/pallets/flask/blob/main/pyproject.toml)：
 
 ```toml
@@ -310,13 +314,45 @@ dependencies = [
     "importlib-metadata>=3.6.0; python_version < '3.10'",
 ]
 
-# 指定build后端
+# 指定build后端，定义使用哪个构建系统及其版本。
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools>=42", "wheel"]
 build-backend = "setuptools.build_meta"
 
 
 ```
+
+更多示例：
+
+```toml
+[build-system]
+requires = ["poetry-core>=1.0.0"]  # 指定构建包所需的依赖项。
+build-backend = "poetry.core.masonry.api"  # 指定构建后端，它是实际执行构建的工具。
+
+
+[tool.poetry]  # 定义使用 poetry 作为项目的依赖管理工具。
+name = "my_package"  # name、version、description 等：项目的基本元数据。
+version = "0.1.0"
+description = "A simple example package"
+authors = ["Your Name <your.email@example.com>"]
+
+[tool.poetry.dependencies]  # 项目的依赖项。
+python = "^3.8"
+requests = "^2.25.1"
+
+[tool.poetry.dev-dependencies]  # 开发环境的依赖项。
+pytest = "^6.2.2"
+
+[tool.poetry.scripts]  # 定义项目的命令行脚本。
+my-script = "my_package:main"
+
+```
+
+优势：
+
+- 统一配置：pyproject.toml 提供了一个标准化的配置文件，减少了不同工具之间的配置混乱。
+- 增强兼容性：构建工具和包管理器可以更轻松地读取和理解项目的配置信息。
+- 易于维护：项目的所有配置信息集中在一个文件中，便于维护和管理。
 
 ### setup.py
 
