@@ -13,20 +13,24 @@
 ## 基本概念
 
 1. 打包（Packaging）：
-定义：将一个 Python 项目的代码、资源和元数据整理成一个可分发的格式（如 .tar.gz 或 .whl 文件）。
-工具：setuptools、distutils、poetry。
+
+   - 定义：将一个 Python 项目的代码、资源和元数据整理成一个可分发的格式（如 .tar.gz 或 .whl 文件）。
+   - 工具：setuptools、distutils、poetry。
 
 2. 构建（Building）：
-定义：将源代码和资源文件转换为可以发布和安装的分发包（如源代码分发包 .tar.gz 和二进制分发包 .whl）。
-工具：setuptools、build。
+
+   - 定义：将源代码和资源文件转换为可以发布和安装的分发包（如源代码分发包 .tar.gz 和二进制分发包 .whl）。
+   - 工具：setuptools、build。
 
 3. 发布（Publishing）：
-定义：将打包好的分发包上传到 Python 包索引（PyPI）或其他包仓库，以便其他用户可以下载和安装。
-工具：twine、poetry。
+
+   - 定义：将打包好的分发包上传到 Python 包索引（PyPI）或其他包仓库，以便其他用户可以下载和安装。
+   - 工具：twine、poetry。
 
 4. 依赖管理（Dependency Management）：
-定义：管理项目所依赖的外部包的版本和安装，确保项目在不同环境下具有一致的依赖。
-工具：pip、pipenv、poetry。
+
+   - 定义：管理项目所依赖的外部包的版本和安装，确保项目在不同环境下具有一致的依赖。
+   - 工具：pip、pipenv、poetry。
 
 ## 分发包
 
@@ -231,6 +235,8 @@ pip 使用这些元数据来管理包和其依赖关系。
 
 2. 通过 `python setup.py install` 安装：安装后会在 site-packages 目录中生成 .egg-info 或 .dist-info 文件夹，具体取决于使用的工具和包的格式。
 3. 通过 `pip install -e .` 安装（可编辑模式）：安装后会在源代码目录中生成 .egg-info 文件夹。
+
+Python 分发包（Distribution Packages）本身不会直接包含 .egg-info 或 .dist-info 文件夹。相反，这些元数据文件夹是在安装分发包时由安装工具生成的。
 
 生成元数据的目的
 
