@@ -76,3 +76,22 @@ app = DispatcherMiddleware(frontend, {
 if __name__ == "__main__":
     run_simple('127.0.0.1', 5000, app)
 ```
+
+## Flask 技术栈
+
+- restful框架:
+  - flask-restx
+  - connexion
+  - flask-restful
+- 鉴权
+  - flask-jwt-extended
+  - flask-security
+- 集合
+  - flask-appbuilder: 差不多实现了Django的效果，但是因为集合的插件由不同开发者维护，所以只能用比较旧的版本，既然用集合，为什么不直接用Django？
+- 数据校验
+  - marchmallow
+  - pydantic
+  - flask-pydantic: 对pydantic的简单封装，需要尽早引入，使得flask跟pydantic形成强耦合，不是特别好用
+  - attrs
+- ORM
+  - sqlalchemy
