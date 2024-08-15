@@ -166,6 +166,24 @@ Python 包可以不打包直接安装。这种方法通常用于开发过程中�
    pip install -e .  # 这里的 . 表示当前目录。-e 参数告诉 pip 以“可编辑”模式安装包。
    ```
 
+### pip install 安装的执行流程
+
+pip 在执行 pip install . 时，会自动检查项目根目录中是否存在 pyproject.toml 文件。如果存在，它会按照该文件中的配置来确定如何构建和安装项目。但如果缺少这个文件，pip 会采用默认的构建方式，这通常涉及直接调用 setup.py 文件。
+
+1. 有 pyproject.toml 的情况
+自动调用: 如果项目根目录中存在 pyproject.toml 文件，pip 会自动读取其中的 [build-system] 部分，以确定构建项目所需的工具和依赖项。
+自定义构建: 通过 pyproject.toml，你可以指定自定义的构建工具和依赖（如 setuptools、wheel 或其他工具），这提供了更大的灵活性和可配置性。
+2. 缺少 pyproject.toml 的情况
+默认行为: 如果项目根目录中没有 pyproject.toml 文件，pip 会假定项目是使用传统的 setup.py 文件进行配置和构建的。这种情况下，pip 会直接调用 setup.py 来处理包的安装。
+传统项目支持: 这是兼容性措施，确保了传统项目仍然可以正常安装。
+3. 默认依赖
+如果没有 pyproject.toml 文件，pip 仍然会使用 setuptools 和 wheel 作为默认的构建工具（假设它们已安装）。这意味着尽管缺少 pyproject.toml 文件，你仍然可以依赖 setup.py 来处理所有的包安装需求。
+
+流程总结
+
+1. 有 pyproject.toml 文件: pip 会自动读取并使用其中的配置来确定构建工具和依赖项。
+2. 没有 pyproject.toml 文件: pip 会直接调用 setup.py，使用默认的 setuptools 和 wheel 来构建和安装包。
+
 ### 直接安装的底层机制
 
 #### 使用 pip install -e . 可编辑模式
